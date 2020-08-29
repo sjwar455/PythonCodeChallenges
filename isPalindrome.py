@@ -19,20 +19,11 @@ def isPalindrome(string):
     string = regex.sub('', string)      # substitute anything matching regex in string 
     string = string.lower()             # make string all lowercase 
 
-    # invert string 
-    invStr = ""
+    # invert string
+    invStr = string[::-1]
 
-    for c in string: 
-        invStr = c + invStr
-
-    print(string) 
-    print(invStr) 
-
-    if invStr == string:
-        return True
-    else:
-        return False
-    
+    # return comparison
+    return invStr == string
 
 
 def usage():
