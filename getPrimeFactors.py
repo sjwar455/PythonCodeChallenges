@@ -16,25 +16,21 @@ def getPrimeFactors(number):
 
     print("finding prime factorization for " + str(number)) 
 
-    if isPrime(number): 
-        print(str(number) + " is prime")
-        exit()
-    else:
-        while not(isPrime(number)):
-            factor = 2                  # start with 2, the smallest prime number
-            result = number/factor      # divde the current number by 2
+    while not(isPrime(number)):
+        factor = 2                  # start with 2, the smallest prime number
+        result = number/factor      # divde the current number by 2
 
-            # if the current number cannot be divided by 2 evenly
-            # find the next prime number that it can be evenly divided by
-            while result % 1 > 0:       
-                factor+=1
-                result = number/factor
+        # if the current number cannot be divided by 2 evenly
+        # find the next prime number that it can be evenly divided by
+        while result % 1 > 0:       
+            factor+=1
+            result = number/factor
 
-            primeFactorization.append(factor)   # add the prime factor to the array
-            number = result                     # continue the loop to check for remaining prime factors
-       
-        # add the final prime factor 
-        primeFactorization.append(int(number))
+        primeFactorization.append(factor)   # add the prime factor to the array
+        number = result                     # continue the loop to check for remaining prime factors
+   
+    # add the final prime factor 
+    primeFactorization.append(int(number))
     
     return primeFactorization
 
