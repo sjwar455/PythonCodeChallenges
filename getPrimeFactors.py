@@ -11,48 +11,18 @@
 ##############################################################################################
 import sys
 
-def getPrimeFactors(number):
-    primeFactorization = []
-
-    print("finding prime factorization for " + str(number)) 
-
-    while not(isPrime(number)):
-        factor = 2                  # start with 2, the smallest prime number
-        result = number/factor      # divde the current number by 2
-
-        # if the current number cannot be divided by 2 evenly
-        # find the next prime number that it can be evenly divided by
-        while result % 1 > 0:       
-            factor+=1
-            result = number/factor
-
-        primeFactorization.append(factor)   # add the prime factor to the array
-        number = result                     # continue the loop to check for remaining prime factors
-   
-    # add the final prime factor 
-    primeFactorization.append(int(number))
+def getPrimeFactors(N):
+    factors = []
+    divisor = 2     # start with smallest prime number, 2
     
-    return primeFactorization
+    while divisor <= N:                 # repeat loop until all prime factors are found
+        if N % divisor == 0:            # check if number is evenly divided by divisor
+            factors.append(divisor)     # add prime factor to list
+            N = N/divisor               # use the quotient as the new number to factor
+        else:
+            divisor+=1                  # if divisor does not evenly divide, incremente by 1
 
-def isPrime(n):
-    # if the passed number is greater than 1 and is a whole number 
-    # check if the number can be evenly divided by a number 2 to n-1 
-    # i.e. a number other than 1 and n 
-    if n > 1 and n % 1 == 0:
-        n = int(n)
-        for i in range(2, n-1):
-            if n % i == 0:
-                return False
-
-    return True
-
-def verifyResults(primeFactorization):
-    result = 1 
-    for i in primeFactorization: 
-        result*=i
-
-    return result
-
+    return factors
 
 def usage():
     print("usage: " + sys.argv[0] + " int") 
@@ -71,13 +41,9 @@ if __name__ == "__main__":
         exit()
 
     # Find the prime factorization for the passed in number
-    primeFactorization = getPrimeFactors(number)
-
-    # verify the prime factorization was correctly calculated
-    result = verifyResults(primeFactorization)
+    factors = getPrimeFactors(number)
 
     # print results
-    print(primeFactorization) 
-    print("product of factorization: " + str(result)) 
+    print(factors) 
 
 
