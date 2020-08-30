@@ -5,7 +5,7 @@
 #
 # Input: Alarm time (seconds), sound file (path), message to display (string)                                         
 #
-# Output: time at which enter was pressed                                          
+# Output: sound is played and message is displayed                                 
 #
 #
 ##############################################################################################
