@@ -7,12 +7,19 @@ import re
 from collections import Counter
 
 def countWords(filePath): 
-	# find all words with letters, numbers, hyphens, and/or apostrophes 
 	words = re.findall(r"[0-9a-zA-Z-']+", open(filePath, encoding='utf-8').read().upper())
-	print("\nTotal words:\t", len(words))	
-	print("\nWORD\tCOUNT")
+
+	# write results to a file
+	file = open('countWordsResult.txt', 'w')
+	lines = "\nTotal words:\t{:d}\nWORD\tCOUNT".format(len(words))
+	file.write(lines)
+
 	for word in Counter(words).most_common(20):
-		print("{}\t{:d}".format(word[0], word[1]))
+		line = "\n{}\t{:d}".format(word[0], word[1])
+		file.write(line)
+
+	with open('countWordsResult.txt', 'r') as file: 
+		print(file.read())
 
 def usage(): 
     print("usage: countWords.py /path/to/text/file")
