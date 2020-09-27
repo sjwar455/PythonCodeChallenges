@@ -9,10 +9,9 @@ from collections import Counter
 def countWords(filePath): 
 	# find all words with letters, numbers, hyphens, and/or apostrophes 
 	words = re.findall(r"\w+|[']\w+|\w+[']|\w+['-]*\w+", open(filePath).read().lower())
-	top_words = Counter(words).most_common(20)
-	
+	print("\nTotal unique words:\t", len(words))	
 	print("\nWORD\tCOUNT")
-	for word in top_words:
+	for word in Counter(words).most_common(20):
 		print("{}\t{:d}".format(word[0], word[1]))
 
 def usage(): 
