@@ -3,26 +3,18 @@
 #
 ##############################################################################################
 import sys
-from random import randint
+import secrets
 
 wordList = 'diceware.wordlist.asc.txt'
 
 def genPassword(num_words):
-	# create dictionary of random short words 
-	words = {} 
-	for line in open(wordList, 'r').readlines(): 
-		(key, val) = line.split()
-		words[key] = val 
+	# create list of words
+	words_list = [line.split()[1] for line in open(wordList, 'r').readlines()[2:7778]]
+	# pick random words from list
+	words = [secrets.choice(words_list) for i in range(num_words)]
 
-	# create randomly generated passphrase
-	password = ""
-	for i in range(1, num_words+1): 
-		key = ""
-		for k in range(1, 6):
-			key += str(randint(1,6)) 
-		password += " " + words[key]
-
-	return password[1:]
+	# return randomly generated passpharse
+	return ' '.join(words)
 
 
 def usage(): 
