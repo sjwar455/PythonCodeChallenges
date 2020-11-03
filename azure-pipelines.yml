@@ -32,6 +32,7 @@ steps:
 - script: |
     python -m pip install --upgrade pip
     pip install -r requirements.txt
+    ls -lr .
   displayName: 'Install dependencies'
 
 
