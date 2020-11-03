@@ -3,8 +3,11 @@
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
+# the "trigger" identifies which branch from the repo will initiate the job 
+# when the trigger branch is pushed to, a job will automatically run
 trigger:
 - master
+
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -19,6 +22,7 @@ strategy:
     Python37:
       python.version: '3.7'
 
+# steps of the job
 steps:
 - task: UsePythonVersion@0
   inputs:
@@ -30,7 +34,4 @@ steps:
     pip install -r requirements.txt
   displayName: 'Install dependencies'
 
-- script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+
